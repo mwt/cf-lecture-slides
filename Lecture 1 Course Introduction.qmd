@@ -1,0 +1,284 @@
+---
+title: "Strategic Financial Planning"
+subtitle: "Lecture 1: Course Introduction"
+author: "FINC-xxx, Professor Craig Furfine"
+format:
+  revealjs:
+    slide-number: true
+    # comment out the chalkboard when you use self-contained
+    chalkboard:
+       buttons: true
+    preview-links: auto
+    logo: Kellogg_H_RGB.png
+    footer: Copyright Craig Furfine 2023
+    theme: default
+    incremental: true
+---
+
+## Course Description
+
+- This course is a [**hands-on, problem-solving-based**]{style="color:purple"} introduction to the questions, concepts, analytical tools, and financial instruments useful for financial planning. 
+
+- The course is designed for students [**with or without a financial industry background**]{style="color:blue"}, who may be interested in pursuing careers in [**wealth management**]{style="color:green"}, or who simply wish to gain appreciation for the real-world practical difficulties one faces in [**accomplishing one’s lifetime financial goals**]{style="color:green"}.
+
+---
+
+## Prerequisites
+
+- You must have completed [**FINC-450 Capital Markets**]{style="color:blue"} before enrolling in this course.
+
+- As a consequence, this course will be generally [**silent**]{style="color:brown"} on questions of asset allocation.
+
+---
+
+## Required readings
+
+- [***Retirement Income Recipes in R***]{style="color:blue"}, by Moshe Milevsky
+- A variety of [**academic articles**]{style="color:green"} posted on Canvas
+- Case studies and copyrighted chapters from other books within the [**Study.net case pack**]{style="color:purple"}
+
+---
+
+## Software
+
+- Perhaps unsurprising given the textbook, you will need to be using R in this course.
+- [**No prior background in R is required.**]{style="color:brown"}
+- Follow the software installation instructions provided on the syllabus and on Canvas and be ready to "code" before our second class.
+
+
+---
+
+## Availability
+
+- Ask question during class
+- Post questions to the relevant discussion board
+- Review previously posted questions/answers on the discussion board
+- Make an "office hour" appointment via the calendly link on Canvas
+
+---
+
+## Attention
+
+All course materials are the intellectual property of the instructor. You may not distribute class materials electronically or in any form to anyone – inside or outside of Kellogg. In particular, you may not share course materials with other students or with your employers after graduating from Kellogg. Unauthorized copying or distribution of any course materials is strictly prohibited.
+
+___
+
+
+
+## Other course policies
+
+- See syllabus for
+  -   Etiquette policies
+  -   Honor code policies
+  -   Various services provided by Northwestern
+
+---
+
+## Course grading
+
+```{mermaid}
+pie title Components of your course grade
+  "Individual Homework":30
+  "Group Case Studies":25
+  "Final Exam":25
+  "Class Participation":10
+  "Peer Review":10
+```  
+
+---
+
+## Course schedule
+
+```{mermaid}
+gantt
+    title Timeline of Strategic Financial Planning
+    dateFormat  YYYY-MM-DD
+    section Modules
+    Introduction            :a1, 2024-01-03, 7d
+    Lifecycle Model of Consumption     :a2, after a1 , 14d
+    Uncertainty in the Planning Process : a3, after a2, 14d
+    Fixed Horizon  : a4, after a3, 7d
+    Uncertain Horizon  : a5, after a4, 14d
+    Instruments to Mitigate Ruin: a6, after a5, 14d
+    section Case discussions
+    Case due      :2024-01-17  , 1d
+    Case due      :2024-01-23, 1d
+    Case due      :2024-02-02, 1d
+    Case due      :2024-02-24, 1d
+    section Individual assignments
+    HW1 due      :2024-02-17, 1d
+    HW2 due      :2024-03-03, 1d
+    HW3 due      :2024-03-12, 1d
+
+```
+
+---
+
+## Questions to be addressed
+
+- Lifecycle model of consumption
+
+  -   What fraction of your salary should you save at the age of 40, 50, and 60 to maintain a constant standard of living over your entire life?
+  -   How do the answers vary depending on whether you will retire at 70 and live to 90 versus retire at 80 and live to 100?
+
+---
+
+## Questions to be addressed
+
+- Progress of a financial plan
+
+  -   What multiple of your salary should you have accumulated by age 40, 50, and 60?
+  -   How do the answers vary depending on whether you will retire at 70 and live to 90 versus retire at 80 and live to 100?
+
+---
+
+## Questions to be addressed
+
+- Risks to the plan (1)
+
+  -   What risks do I face to achieve my financial plan?
+  -   Which of these risks can an insure against?
+  -   Which of these risks should I insure against?
+
+---
+
+## Questions to be addressed
+
+- Risks to the plan (2)
+
+  -   Under what circumstances should I buy life insurance?
+  -   What are the various types of life insurance?
+  -   How do insurers price term life insurance?
+
+---
+
+## Questions to be addressed
+
+- Portfolio longevity (1) with known lifetime
+
+  -   A retired 70-year old has $1,000,000 in wealth earning 6% per year. How long will the money last if the retiree withdraws $80,000 per year?
+  -   What if the withdrawal is 8% of current wealth?
+  -   What is wrong with such "rules of thumb?"
+
+
+---
+
+## Questions to be addressed
+
+- Portfolio longevity (2) with known lifetime
+
+  -   A retired 70-year old has $1,000,000 in wealth earning 6% per year and plans to withdraw $80,000 per year. How will the success of the plan depend on realized rates of return early in retirement?
+  -   How does uncertainty in asset returns influence the chances of a successful plan?
+
+
+---
+
+## Questions to be addressed
+
+- Portfolio longevity with unknown lifetime
+
+  -   How does uncertainty regarding the length of life influence a financial plan?
+  -   How do we (accurately) estimate our expected lifetime?
+
+
+---
+
+## Questions to be addressed
+
+- Lifetime ruin
+
+  -   With uncertain asset returns and uncertain lifetime length, how can I calculate the likelihood I'll run out of money?
+
+
+---
+
+## Questions to be addressed
+
+- Instruments to avoid lifetime ruin (1)
+
+  -   What is a lifetime annuity and how is it priced?
+  -   Why is a lifetime annuity an integral part of a financial plan?
+  -   Why do consumers dislike lifetime annuities?
+
+
+---
+
+## Questions to be addressed
+
+- Instruments to avoid lifetime ruin (2)
+
+  -   What is meant by a "permanent" life insurance policy?
+  -   How are such policies priced?
+  -   How can such policies address lifetime ruin?
+
+---
+
+## Questions to be addressed
+
+- Instruments to avoid lifetime ruin (3)
+
+  -   Should housing wealth be incorporated into a financial plan?
+  -   What is a reverse mortgage, and how are they structured and priced?
+
+---
+
+## Summary
+
+-   If answers to these questions interest you, then you are in the right class.
+-   If not, ...
+
+---
+
+## What is financial planning?
+
+. . .
+
+As defined by the CFP Board Practice Standards ...
+
+. . .
+
+![](graphics/FinancialPlanningProcess.png){width=90%}
+
+---
+
+## Strategic vs. tactical planning
+
+- Tactical issues:
+  -   Credit card debt is bad
+  -   Fees charged by mutual funds are important
+  -   Make a budget
+  
+- Strategic issues:
+  -   A conceptual framework for financial decision making
+  -   Based on economic principles
+
+
+---
+
+## Identify your goals
+
+[Let's find out what goals you have.](https://menti.com)
+
+---
+
+## What makes a goal S.M.A.R.T.?
+
+-   S. specific
+-   M. measurable
+-   A. assignable
+-   R. realistic
+-   T. time-related
+
+---
+
+## Goal adjustment
+
+-   [BEFORE]{style="color:red"}: Pay for my kids' college education.
+-   [AFTER]{style="color:green"}: My spouse and I have two kids who will begin college in 12 and 15 years, respectively. We anticipate them going to private school, which in today's dollars costs $72,000/year. We want to pay out of savings for four years of private college education for both kids. I expect private college to increase in cost by 4% per year and my college savings to earn 5% per year. 
+
+---
+
+## Identify your goals
+
+[Make your goals S.M.A.R.T.](https://menti.com)
+

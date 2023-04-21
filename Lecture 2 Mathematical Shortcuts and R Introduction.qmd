@@ -1,0 +1,262 @@
+---
+title: "Strategic Financial Planning"
+subtitle: "Lecture 2: Using R, Annuity Shortcuts"
+author: "FINC-xxx, Professor Craig Furfine"
+format:
+  revealjs:
+    slide-number: true
+    # comment out the chalkboard when you use self-contained
+    chalkboard:
+       buttons: true
+    preview-links: auto
+    logo: Kellogg_H_RGB.png
+    footer: Copyright Craig Furfine 2023
+    theme: default
+    incremental: true
+---
+
+## The RStudio interface
+
+::: {style="width: 50% !important; margin-left: 6em"}
+![](graphics/preview.png)
+:::
+
+---
+
+## The RStudio interface
+
+![](graphics/RStudioImage1.png)
+
+---
+
+## The RStudio interface
+
+::: {.nonincremental}
+- After opening a new RStudio file.
+:::
+
+![](graphics/RStudioImage2.png)
+
+---
+
+## The RStudio interface
+
+- Let's explore how to do simple things in RStudio.
+
+---
+
+## Annuities 
+
+* In FINC-430, you learned shortcuts for the present value of **annuities** and **perpetuities**.
+
+* These will be helpful in *Strategic Financial Planning*.
+
+* They also provide us with a useful introduction to programming in R.
+
+---
+
+## Annuities
+
+* In particular, you learned that the PV of a **delayed** growing annuity can be written
+
+. . .
+
+$$PV =\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{v-g}$$
+
+
+---
+
+<script type='module'> import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.2/+esm' </script>
+
+## Annuities
+
+::: {.nonincremental}
+
+-   Note that this present value expression assumes a particular timing of cash flows.
+
+:::
+
+::::: {.columns}
+
+:::: {.column width="10%"}
+::::
+
+:::: {.column width="80%"}
+::: {style="width: 100% !important"}
+
+<pre class='mermaid'>
+  timeline
+    Time 0 : 0
+    Time 1 : 1
+    Time 2 : (1+g)
+    ... : ...
+    Time n : (1+g)^(n-1)
+</pre>
+
+:::
+::::
+
+:::: {.column width="10%"}
+::::
+::::: 
+
+- This is called a **delayed** growth ordinary annuity.
+- Cash flow growth does not begin until time 1.
+
+---
+
+
+## Annuities
+
+-   It will be convenient to calculate instead the present value of a **regular** growth ordinary annuity.
+-   Note that I'm simply multiplying the cash flows by (1+g). 
+
+. . . 
+
+::::: {.columns}
+
+:::: {.column width="10%"}
+::::
+
+:::: {.column width="80%"}
+::: {style="width: 100% !important"}
+
+<pre class='mermaid'>
+  timeline
+    Time 0 : 0
+    Time 1 : 1+g
+    Time 2 : (1+g)^2
+    ... : ...
+    Time n : (1+g)^n
+</pre>
+
+:::
+::::
+
+:::: {.column width="10%"}
+::::
+::::: 
+
+- Therefore, its present value is simply what we had before multiplied by (1+g).
+
+---
+
+## Annuities
+
+- The present value of a regular growth ordinary annuity is
+
+. . . 
+
+$$PV =(1+g)\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{v-g}=\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{\frac{v-g}{1+g}}$$
+---
+
+## Using R as a calculator
+
+- Question: Calculate the present value of a regular growth ordinary annuity (RGOA) that delivers $1.02 at time 1, grows by 2%/year, lasts for 25 years if the discount rate is 5%.
+
+- Answer: Type the following
+  -   v <- .05
+  -   g <- .02
+  -   N <- 25
+  -   (1-((1+g)^N)*(1+v)^(-N))/((v-g)/(1+g))
+
+- The console returns a value of `r (1-((1+.02)^25)*(1+.05)^(-25))/((.05-.02)/(1+.02))`.
+
+---
+
+## Defining a function in R
+
+-   Let's create a new R script file and include the following code
+
+. . .
+
+```{.r code-line-numbers="1-3|1|3|2"}
+RGOA<-function(g,v,N) {
+  (1-((1+g)^N)*(1+v)^(-N))/((v-g)/(1+g))
+}
+```
+
+
+```{r, echo=FALSE}
+RGOA<-function(g,v,N) {
+  (1-((1+g)^N)*(1+v)^(-N))/((v-g)/(1+g))
+}
+```
+
+-   Source (or select all and run) the code. Notice RGOA gets added to the environment.
+-   Then, if you type the command RGOA(.02,.05,25), you will get as output `r# RGOA(.02,.05,25)`. Similarly, RGOA(.04,.02,25) = `r# RGOA(.04,.02,25)`.
+-   What do you think will happen if you enter RGOA(.02,.02,25)?
+-   Entering RGOA(.02,.02,25) returns `r# RGOA(.02,.02,25)`.
+
+---
+
+## Amending the RGOA function
+
+- The NaN response is because this present value formula does not hold when $v=g$.
+- This is not a problem because we can calculate RGOA directly in such cases.
+
+. . . 
+
+::::: {.columns}
+
+:::: {.column width="10%"}
+::::
+
+:::: {.column width="80%"}
+::: {style="width: 100% !important"}
+
+<pre class='mermaid'>
+  timeline
+    Time 0 : Cash Flows
+           : Present Value of Cash Flows
+    Time 1 : 1+g
+           : PV = (1+g)/(1+v) = 1
+    Time 2 : (1+g)^2
+           : PV = (1+g)^2/(1+v)^2 = 1
+    ... : ...
+    Time n : (1+g)^n
+           : PV = (1+g)^n/(1+v)^n = 1
+</pre>
+
+:::
+::::
+
+:::: {.column width="10%"}
+::::
+::::: 
+
+
+---
+
+## Amending the RGOA function
+
+-   When $v=g$, the present value is simply equal to $N$.
+-   Let's improve the code.
+
+. . .
+
+```{.r code-line-numbers="2-4|5-7|1-8"}
+RGOAIF<-function(g,v,N) {
+  if (g==v) {
+    N
+    }
+  else {
+    (1-((1+g)^N)*(1+v)^(-N))/((v-g)/(1+g))
+  }
+}
+```
+
+```{r, echo=FALSE}
+RGOAIF<-function(g,v,N) {
+  if (g==v) {
+    N
+    }
+  else {
+    (1-((1+g)^N)*(1+v)^(-N))/((v-g)/(1+g))
+  }
+}
+```
+
+-   Now, entering RGOAIF(.02,.02,25) returns `r# RGOAIF(.02,.02,25)`.
+
+  

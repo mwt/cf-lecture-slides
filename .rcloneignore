@@ -1,0 +1,5 @@
+## This file is used to ignore files and folders when using rclone.
+
+# Ignore hidden files and folders
+.*
+.*/**

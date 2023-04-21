@@ -1,0 +1,97 @@
+---
+title: "Strategic Financial Planning"
+subtitle: "Lecture 4: Balance sheet and income statement"
+author: "FINC-xxx, Professor Craig Furfine"
+format:
+  revealjs:
+    slide-number: true
+    # comment out the chalkboard when you use self-contained
+    chalkboard:
+       buttons: true
+    preview-links: auto
+    logo: Kellogg_H_RGB.png
+    footer: Copyright Craig Furfine 2023
+    theme: default
+    incremental: true
+---
+
+## Some family balance sheet data
+
+```{r, echo=FALSE}
+setwd('/Users/craigfurfine/Dropbox/Teaching/Strategic Financial Planning/Lecture materials/R files for lecture notes')
+
+font.size <- "13pt"
+
+SIMPBS<-read.csv('SIMPBS.CSV')
+library(DT)
+datatable(SIMPBS, rownames = FALSE , class = 'compact stripe', 
+          colnames = c('Family ID','Family Age','Current Wage','Retirement Age','Spending','Financial Capital'), filter = 'top', options = list(pageLength = 10, dom = 'tipr',  initComplete = htmlwidgets::JS(
+          "function(settings, json) {",
+          paste0("$(this.api().table().container()).css({'font-size': '", font.size, "'});"),
+          "}")))
+```
+
+## What does this data look like? (Part 1)
+
+```{r, echo = FALSE}
+library(ggplot2)
+ggplot(data = SIMPBS, 
+       mapping = aes(x = AGEFAM, y = FINCAP, color = RETAGE)) +
+  geom_point(size = 1, alpha = 0.5)  + 
+  geom_smooth() +
+  labs(title = "Wealth as a function of age", x="Family Age", y="Financial Capital", color = "Retirement Age") +
+  xlab("Family Age") +
+  ylab("Financial Capital") +
+  scale_y_continuous(labels=scales::dollar_format()) +
+  theme_bw()
+ 
+```
+
+## What does this data look like? (Part 2)
+
+```{r, echo = FALSE}
+
+invisible(filter(SIMPBS,SIMPBS$CRNTWG > 0))
+
+    SIMPBS$Ratio<-SIMPBS$FINCAP/SIMPBS$CRNTWG
+    ggplot(data = SIMPBS, 
+       mapping = aes(x = AGEFAM, y = Ratio, color = RETAGE)) +
+    geom_point(size = 1, alpha = 0.5)  + 
+    geom_smooth() +
+    labs(title = "Wealth to wage ratios as a function of age (working families only)") +
+    theme_bw()
+
+```
+
+## What does this data look like? (Part 3)
+
+
+```{r, echo = FALSE}
+
+
+SIMPBS$agegroup <- findInterval(SIMPBS$AGEFAM,c(30,40,50,60))  
+
+ggplot(data = SIMPBS, 
+       mapping = aes(x = agegroup, y = Ratio)) +
+  geom_point(size = 1, alpha = 0.5)  + 
+  geom_boxplot() +
+  labs(title = "Wealth to wage ratios as a function of age bins") +
+  theme_bw()
+
+```
+
+
+## What does this data look like? (Part 4)
+
+
+```{r, echo = FALSE}
+
+
+SIMPBS %>%
+  ggplot(data = SIMPBS, 
+       mapping = aes(x = AGEFAM, y = FINCAP)) +
+  geom_point(aes(color = SPENDING, size = RETAGE, alpha = 0.2))  +
+  labs(title = "Wealth to wage ratios as a function of age bins") +
+  theme_bw()
+
+```
