@@ -2,7 +2,7 @@
 
 ##################
 REMOTE_DIR="dropbox:/Lecture slides"
-SYNC_DIR=`dirname -- $0`
+SYNC_DIR=$(dirname -- $0)
 
 # Echo the date and time
 echo ">>>> Syncing dropbox at" $(date +'[%D %T]') "<<<<"
@@ -22,8 +22,15 @@ if [ $RET_VAL -eq 9 ]; then
 elif [ $RET_VAL -eq 0 ]; then
     echo "files copied succesfully!"
     git add -A
-    git commit -c "user.name=Craig Furfine" -c "user.email=c-furfine@kellogg.northwestern.edu" -m "Automatic update from dropbox"
+    git commit -m "Automatic update from dropbox"
     git push
 else
     echo "some other error!"
+fi
+
+if [ -n $(git status --porcelain) ]; then
+    echo "files changed!"
+    git add -A
+    git commit -m "Automatic update from dropbox"
+    git push
 fi
