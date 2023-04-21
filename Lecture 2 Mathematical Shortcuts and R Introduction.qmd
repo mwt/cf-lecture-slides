@@ -70,21 +70,8 @@ $$PV =\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{v-g}$$
 
 ## Annuities
 
-::: {.nonincremental}
-
 -   Note that this present value expression assumes a particular timing of cash flows.
-
-:::
-
-::::: {.columns}
-
-:::: {.column width="10%"}
-::::
-
-:::: {.column width="80%"}
-::: {style="width: 100% !important"}
-
-<pre class='mermaid'>
+<pre class='mermaid' style='width: 70%; margin: 0 auto'>
   timeline
     Time 0 : 0
     Time 1 : 1
@@ -92,16 +79,9 @@ $$PV =\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{v-g}$$
     ... : ...
     Time n : (1+g)^(n-1)
 </pre>
-
-:::
-::::
-
-:::: {.column width="10%"}
-::::
-::::: 
-
 - This is called a **delayed** growth ordinary annuity.
 - Cash flow growth does not begin until time 1.
+
 
 ---
 
@@ -110,18 +90,7 @@ $$PV =\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{v-g}$$
 
 -   It will be convenient to calculate instead the present value of a **regular** growth ordinary annuity.
 -   Note that I'm simply multiplying the cash flows by (1+g). 
-
-. . . 
-
-::::: {.columns}
-
-:::: {.column width="10%"}
-::::
-
-:::: {.column width="80%"}
-::: {style="width: 100% !important"}
-
-<pre class='mermaid'>
+<pre class='mermaid' style='width: 70%; margin: 0 auto'>
   timeline
     Time 0 : 0
     Time 1 : 1+g
@@ -129,14 +98,6 @@ $$PV =\frac{1-\bigl(\frac{1+g}{1+v}\bigl)^n}{v-g}$$
     ... : ...
     Time n : (1+g)^n
 </pre>
-
-:::
-::::
-
-:::: {.column width="10%"}
-::::
-::::: 
-
 - Therefore, its present value is simply what we had before multiplied by (1+g).
 
 ---
@@ -194,18 +155,7 @@ RGOA<-function(g,v,N) {
 
 - The NaN response is because this present value formula does not hold when $v=g$.
 - This is not a problem because we can calculate RGOA directly in such cases.
-
-. . . 
-
-::::: {.columns}
-
-:::: {.column width="10%"}
-::::
-
-:::: {.column width="80%"}
-::: {style="width: 100% !important"}
-
-<pre class='mermaid'>
+<pre class='mermaid' style='width: 70%; margin: 0 auto'>
   timeline
     Time 0 : Cash Flows
            : Present Value of Cash Flows
@@ -217,13 +167,6 @@ RGOA<-function(g,v,N) {
     Time n : (1+g)^n
            : PV = (1+g)^n/(1+v)^n = 1
 </pre>
-
-:::
-::::
-
-:::: {.column width="10%"}
-::::
-::::: 
 
 
 ---
