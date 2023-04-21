@@ -1,0 +1,17 @@
+---
+title: "Lecture code in progress"
+format: revealjs
+---
+
+| Assets                                | Liabilities                        |
+|:-------------------------------------------|:---------------------------|
+|  Bank Accounts                        |  Credit Card Balances              |
+|  Investments (Stocks, Bonds, etc.)    |  Student Loans                     |
+|  Vehicles                             |  Car Loans                         |
+|  Housing                              |  Mortgage Loans                    |
+|  Present Value of Pensions            |  Other Debts                       |
+|  Equity in Small Business             |                                    |
+|  Other Assets                         |                                    |
+|  Total Assets                         |  Total Liabilities                 |
+|                                       |  Total Assets - Total Liabilities  |
+|                                       |  = Net Worth                       |
